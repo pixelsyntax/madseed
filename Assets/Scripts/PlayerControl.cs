@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour {
 
+    public static Vector3 playerPosition;
+
     public float inertia;
     public float bobAmplitude;
 
@@ -28,13 +30,13 @@ public class PlayerControl : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 
-        //Mouselook
+        //Look
         float deltaHeading = Input.GetAxis("LookHorizontal") * 3f;
         heading += deltaHeading;
 
         myRigidbody.rotation = Quaternion.Euler(0, heading, 0);
 
-        //Movement
+        //Move
         float deltaForward = Input.GetAxis("MoveVertical");
         float deltaSideways = Input.GetAxis("MoveHorizontal");
         momentum.x = Mathf.Lerp(momentum.x, deltaSideways, inertia);
@@ -43,8 +45,12 @@ public class PlayerControl : MonoBehaviour {
         deltaMove = transform.TransformVector(deltaMove * 5f);
         myRigidbody.MovePosition(myRigidbody.position + deltaMove * Time.fixedDeltaTime);
 
+        //Headbob
         bobTimer += deltaMove.magnitude * Time.fixedDeltaTime * 2f;
         headCam.transform.localPosition = new Vector3(0, Mathf.Sin(bobTimer) * bobAmplitude, 0);
+
+        //Update position for enemies to find us :o
+        playerPosition = myRigidbody.position;
 
 	}
 }

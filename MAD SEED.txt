@@ -24,3 +24,27 @@ Arena shooter. Seeds grow into trees which spawn enemies. Some enemies drop coll
 
 		Tree weak spot
 		Tree develops weak spot after spawning enemies
+
+6 		Weapons
+		Left hand infinite ammo, weak
+		Right hand limited ammo, powerful
+
+7 		HUD
+		Timer
+		Ammo
+		Lightning indicator
+
+8 		Playthrough single session
+		Spawn
+		Wave
+		Death
+
+9 		Menu
+		Scores
+
+
+Online highscores?
+
+Towers zap player every so often? Force player to hide and stop killing enemies
+
+Power weapon kills trees, weak weapon does not.
