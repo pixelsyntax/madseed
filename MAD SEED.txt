@@ -1,0 +1,26 @@
+MAD SEED
+Devil daggers with trees
+Arena shooter. Seeds grow into trees which spawn enemies. Some enemies drop collectibles. Trees can be killed or left to spawn more enemies.
+
+1 		Arena
+		Basic combat arena. Fairly flat to make game logic easier.
+
+2 		Player movement
+		Run around the arena
+
+3 		Seed drops and becomes tree
+		A seed drops from above and grows into a tree
+
+		Seed
+		Tree
+		Seed grows to tree
+
+4 		Tree spawns swarmer
+		
+		Basic swarm enemy
+		Tree spawns group of enemies
+
+5 		Destroyable tree
+
+		Tree weak spot
+		Tree develops weak spot after spawning enemies
