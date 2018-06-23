@@ -44,6 +44,8 @@ public class PlayerControl : MonoBehaviour {
     bool showFlashWeak;
     bool showFlashStrong;
     float accuracy; //Less is better
+    public float gameTime;
+    public Text textTime;
 
 	void Start () {
 
@@ -56,6 +58,7 @@ public class PlayerControl : MonoBehaviour {
         transformRightHandHome = transformRightHand.localPosition;
         accuracy = 1f;
         health = healthMax;
+        gameTime = 0;
 
 	}
 
@@ -65,6 +68,12 @@ public class PlayerControl : MonoBehaviour {
         fillBlue.fillAmount = ammoWeak / 100f;
         fillYellow.fillAmount = ammoStrong / 25f;
         fillRed.fillAmount = health / 10f;
+        gameTime += Time.deltaTime;
+        int minutes = Mathf.FloorToInt(gameTime / 60f);
+        int seconds = Mathf.FloorToInt(gameTime % 60);
+        float splits = (gameTime - Mathf.FloorToInt(gameTime))*1000f;
+        string timeString = string.Format("{0:#00}:{1:#00}:{2:#000}", minutes, seconds, splits);
+        textTime.text = timeString;
 
     }
 

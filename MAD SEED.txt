@@ -43,6 +43,8 @@ Arena shooter. Seeds grow into trees which spawn enemies. Some enemies drop coll
 		Scores
 
 
+Shot splash
+Additional enemy
 Online highscores?
 
 Towers zap player every so often? Force player to hide and stop killing enemies
