@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23503674841170592}
   - component: {fileID: 65008698503517864}
   - component: {fileID: 114354640729110626}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Yearling
   m_TagString: Untagged
   m_Icon: {fileID: 0}

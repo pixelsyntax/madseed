@@ -1,8 +1,11 @@
 fileFormatVersion: 2
-guid: a7dc69b960982b14c93320b602f828a3
+guid: b18fefa68dbde2d45b0d873a81b62298
 TextureImporter:
   fileIDToRecycleName:
-    21300000: ui_glasses_0
+    21300000: ui_hud_glass
+    21300002: ui_hud_fillRed
+    21300004: ui_hud_fillBlue
+    21300006: ui_hud_fillYellow
   externalObjects: {}
   serializedVersion: 5
   mipmaps:
@@ -44,9 +47,9 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 480
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 0
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -59,8 +62,8 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 2
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 256
-    resizeAlgorithm: 1
+    maxTextureSize: 128
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
@@ -70,8 +73,8 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
     buildTarget: Standalone
-    maxTextureSize: 256
-    resizeAlgorithm: 1
+    maxTextureSize: 128
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
@@ -81,8 +84,8 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
     buildTarget: WebGL
-    maxTextureSize: 256
-    resizeAlgorithm: 1
+    maxTextureSize: 128
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
@@ -94,11 +97,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ui_glasses_0
+      name: ui_hud_glass
       rect:
         serializedVersion: 2
-        x: 56
-        y: 0
+        x: 1
+        y: 72
         width: 48
         height: 55
       alignment: 0
@@ -108,7 +111,67 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b5a7aeeacf5d6f249bf5e4f26c5229de
+      spriteID: c18a378ce7af71145b2dddce5ad5f4ba
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_hud_fillRed
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 80
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbb801f8e7e6e6a459a21285580c7b61
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_hud_fillBlue
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 16
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e9279ad8addf3344a2a897114b620d5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_hud_fillYellow
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 16
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74d282d020efc6f4785d504046f9e42b
       vertices: []
       indices: 
       edges: []
@@ -116,7 +179,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: bed9b4cf231228d48baa740e70e31309
+    spriteID: cdb3af26a8054e243959d00823d3a4f3
     vertices: []
     indices: 
     edges: []

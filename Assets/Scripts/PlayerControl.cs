@@ -26,7 +26,7 @@ public class PlayerControl : MonoBehaviour {
     public Image fillYellow;
     public int health;
     public int healthMax;
-
+    public float invulnerableTime; //Invulnerable to everything except lightning
     Vector3 transformLeftHandHome;
     Vector3 transformRightHandHome;
     float bobTimer;
@@ -65,9 +65,12 @@ public class PlayerControl : MonoBehaviour {
     private void Update()
     {
 
+        if (invulnerableTime > 0)
+            invulnerableTime -= Time.deltaTime;
+
         fillBlue.fillAmount = ammoWeak / 100f;
         fillYellow.fillAmount = ammoStrong / 25f;
-        fillRed.fillAmount = health / 10f;
+        fillRed.fillAmount = (float)health / (float)healthMax;
         gameTime += Time.deltaTime;
         int minutes = Mathf.FloorToInt(gameTime / 60f);
         int seconds = Mathf.FloorToInt(gameTime % 60);
@@ -78,7 +81,6 @@ public class PlayerControl : MonoBehaviour {
     }
 
     void FixedUpdate () {
-
   
         cooldownWeak -= Time.fixedDeltaTime;
         cooldownStrong -= Time.fixedDeltaTime;
@@ -105,7 +107,7 @@ public class PlayerControl : MonoBehaviour {
         transformLeftHand.localPosition = transformLeftHandHome + new Vector3(Mathf.Sin(bobTimer) * handMovement, Mathf.Abs(Mathf.Cos(bobTimer) * handMovement), 0);
         transformRightHand.localPosition = transformRightHandHome + new Vector3(Mathf.Sin(bobTimer) * handMovement, Mathf.Abs(Mathf.Cos(bobTimer) * handMovement), 0);
         //Update position for enemies to find us :o
-        playerPosition = myRigidbody.position;
+        playerPosition = transform.position;
 
         if (Input.GetButton("LeftHand") || Input.GetAxis("LeftHandAnalogue") > 0.5f ) {
             ShootWeak();
@@ -168,4 +170,21 @@ public class PlayerControl : MonoBehaviour {
         shot.SetVelocity(transform.forward * 6f + transform.right * Random.Range(-0.2f, 0.2f) + transform.up * Random.Range(-0.2f, 0.2f));
 
     }
+
+    public void Zapped() //Smote by hot electric death
+    {
+        health = 0;
+    }
+
+    public void Bumped() //Collided with a skull etc
+    {
+        if (invulnerableTime > 0) //ignore if we're invulnerable
+            return;
+
+        invulnerableTime = 1f;
+        health -= 25;
+        
+    }
+
+    
 }

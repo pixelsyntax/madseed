@@ -22,6 +22,15 @@ public class Shot : MonoBehaviour {
     private void OnCollisionEnter(Collision collision)
     {
         //Hit something
+        switch (shotType) { 
+            case ShotType.shotWeak:
+            collision.collider.gameObject.SendMessageUpwards("ReceiveWeakDamage", SendMessageOptions.DontRequireReceiver);
+            break;
+
+        case ShotType.shotStrong:
+            collision.collider.gameObject.SendMessageUpwards("ReceiveStrongDamage", SendMessageOptions.DontRequireReceiver);
+            break;
+        }
         Destroy(gameObject);
     }
 }

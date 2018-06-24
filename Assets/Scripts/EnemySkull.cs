@@ -18,7 +18,7 @@ public class EnemySkull : MonoBehaviour {
 	void Start () {
         GetComponent<SphereCollider>().enabled = false;
 
-        health = 10;
+        health = 5;
         time = 0;
         myRigidbody = GetComponent<Rigidbody>();
         Spawn();
@@ -26,6 +26,9 @@ public class EnemySkull : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+
+        if (skullMode != SkullMode.dying && health <= 0)
+            Die();
 
         time += Time.fixedDeltaTime;
         Vector3 futurePosition = myRigidbody.position;
@@ -48,11 +51,20 @@ public class EnemySkull : MonoBehaviour {
                 if (Random.value < 0.015f) //reseek?
                     Seek();
                 break;
+
+            case SkullMode.dying:
+                break;
         }
 
         futurePosition = myRigidbody.position + skullDir * Time.fixedDeltaTime * speed;
         futurePosition.y = Mathf.Lerp(myRigidbody.position.y, targetHeight + Mathf.Sin(time*10f) * 0.3f, Time.fixedDeltaTime);
         myRigidbody.MovePosition(futurePosition);
+    }
+
+    void Die()
+    {
+        skullMode = SkullMode.dying;
+        Destroy(gameObject);
     }
 
     public void Seek() //Start seeking behaviour
@@ -74,10 +86,30 @@ public class EnemySkull : MonoBehaviour {
         skullDir = new Vector3(Mathf.Sin(h), 0, Mathf.Cos(h));
 
     }
+
+    public void ReceiveWeakDamage()
+    {
+        --health;
+    }
+
+    public void ReceiveStrongDamage()
+    {
+        health -= 10;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        PlayerControl playerControl = collision.gameObject.GetComponent<PlayerControl>();
+        if (playerControl != null)
+            playerControl.Bumped();
+
+    }
 }
 
 public enum SkullMode
 {
     spawning,
-    seeking
+    seeking,
+    dying
 }

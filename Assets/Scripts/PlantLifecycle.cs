@@ -19,7 +19,8 @@ public class PlantLifecycle : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
-        currentPhase = PlantPhase.tree;
+        phase = PlantPhase.fallingSeed;
+        currentPhase = PlantPhase.tree; 
 	}
 	
 	// Update is called once per frame
@@ -123,7 +124,7 @@ public class PlantLifecycle : MonoBehaviour {
         currentPhase = phase;
     }
 
-    void SpawnWave()
+    void SpawnWave() //Spawn a set of skulls 
     {
         for (int i = 0; i < 5; ++i)
         {
@@ -135,15 +136,15 @@ public class PlantLifecycle : MonoBehaviour {
         }
     }
 
-    public void ReceiveWeakDamage( int damage )
+    public void ReceiveWeakDamage()
     {
         //Don't care lul
     }
 
-    public void ReceiveStrongDamage( int damage )
+    public void ReceiveStrongDamage()
     {
         //oh no
-        health -= damage;
+        health -= 20;
         if (health <= 0)
             Die();
     }
