@@ -26,6 +26,9 @@ public class PlantLifecycle : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        if (PlayerControl.playerState == PlayerState.dead)
+            return;
+
         time += Time.deltaTime;
 
         if (currentPhase != phase)

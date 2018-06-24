@@ -32,8 +32,8 @@ Arena shooter. Seeds grow into trees which spawn enemies. Some enemies drop coll
 7 		HUD
 		Timer
 		Ammo
-		Lightning indicator - not done
-
+		Lightning indicator 
+		
 8 		Playthrough single session
 		Spawn
 		Wave

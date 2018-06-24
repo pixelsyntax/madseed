@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemySkull : MonoBehaviour {
 
     public float spawnHeight = 5f;
-
+    AudioSource audio;
     public SkullMode skullMode;
     public int health;
     public float time;
@@ -17,7 +17,7 @@ public class EnemySkull : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         GetComponent<SphereCollider>().enabled = false;
-
+        audio = GetComponent<AudioSource>();
         health = 5;
         time = 0;
         myRigidbody = GetComponent<Rigidbody>();
@@ -26,6 +26,9 @@ public class EnemySkull : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+
+        if (PlayerControl.playerState == PlayerState.dead)
+            return;
 
         if (skullMode != SkullMode.dying && health <= 0)
             Die();
@@ -99,6 +102,8 @@ public class EnemySkull : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
+        audio.pitch = Random.Range(0.95f, 1f);
+        audio.Play();
 
         PlayerControl playerControl = collision.gameObject.GetComponent<PlayerControl>();
         if (playerControl != null)

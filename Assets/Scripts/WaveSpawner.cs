@@ -12,13 +12,22 @@ public class WaveSpawner : MonoBehaviour {
     public LayerMask towerRaycastMask;
     public GameObject prototypeSeed;
     public GameObject protoLightningChain;
-	// Use this for initialization
-	void Start () {
+    public GameObject protoGem;
+    public ColourOverlay overlayFlash;
+    public AudioSource audioThunder;
+    public AudioSource audioCharge;
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (PlayerControl.playerState == PlayerState.dead)
+            return;
+
         time += Time.deltaTime;
         while( waveEvents.Count > 0 && time >= waveEvents[0].time )
         {
@@ -32,6 +41,8 @@ public class WaveSpawner : MonoBehaviour {
                     seedObject.transform.position = e.position;                  
                     break;
                 case WaveEventType.towerAttack:
+                    audioThunder.transform.position = GetTowerPosition(e.tower);
+                    audioThunder.Play();
                     Vector3 direction = PlayerControl.playerPosition - GetTowerPosition(e.tower);
                     RaycastHit hitInfo;
                     Debug.DrawRay(GetTowerPosition(e.tower), direction);
@@ -47,8 +58,8 @@ public class WaveSpawner : MonoBehaviour {
                             player.Zapped();
                         } else
                         {
-                            Debug.Log("Zapped " + hitInfo.collider.gameObject);
                         }
+                        overlayFlash.Go(0.2f);
                         GameObject lightningChainObject = Instantiate(protoLightningChain);
                         LightningChain chain = lightningChainObject.GetComponent<LightningChain>();
                         chain.MakeChain(start, end, 1f);
@@ -58,6 +69,12 @@ public class WaveSpawner : MonoBehaviour {
                     GameObject lightningChainObjectW = Instantiate(protoLightningChain);
                     LightningChain chainW = lightningChainObjectW.GetComponent<LightningChain>();
                     chainW.MakeChain(GetTowerPosition(e.tower)-Vector3.up* 3f, GetTowerPosition(e.tower)+Vector3.up*15f, 10f);
+                    audioCharge.transform.position = GetTowerPosition(e.tower);
+                    audioCharge.Play();
+                    break;
+                case WaveEventType.gemDrop:
+                    GameObject gem = Instantiate(protoGem);
+                    gem.transform.position = e.position;
                     break;
             }
 
@@ -102,5 +119,6 @@ public enum WaveEventType
 {
     seed,
     towerAttack,
-    towerWarmup
+    towerWarmup,
+    gemDrop
 }
